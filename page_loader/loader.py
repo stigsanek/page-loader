@@ -6,12 +6,12 @@ import requests
 import urllib3
 
 
-def load_data(url: str) -> str:
+def send_request(url: str) -> requests.Response:
     """
-    Download data
+    Send request
 
     :param url: page url
-    :return: str
+    :return: requests.Response
     """
     urllib3.disable_warnings()
 
@@ -19,7 +19,7 @@ def load_data(url: str) -> str:
     code = response.status_code
 
     if code == requests.codes.ok:
-        return response.text
+        return response
 
     raise requests.HTTPError(f"Loading error. Server response code {code}.")
 
@@ -36,7 +36,7 @@ def create_file_name(url: str) -> str:
     return re.sub(pattern=r"\W", repl="-", string=part_url) + ".html"
 
 
-def save_data(data: str, file_path: str):
+def save_data(data, file_path: str):
     """
     Save data to file
 
@@ -49,5 +49,12 @@ def save_data(data: str, file_path: str):
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-    with open(file=file_path, mode="w", encoding="utf-8") as f:
+    if isinstance(data, bytearray):
+        mode = "w+b"
+        encoding = None
+    else:
+        mode = "w"
+        encoding = "utf-8"
+
+    with open(file=file_path, mode=mode, encoding=encoding) as f:
         f.write(data)
