@@ -13,6 +13,7 @@ def get_args() -> argparse.Namespace:
     )
     parser.add_argument("page_url")
     parser.add_argument(
+        "-o",
         "--output",
         help="set output folder",
         default=os.getcwd(),
