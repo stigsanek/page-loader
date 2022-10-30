@@ -24,16 +24,19 @@ def send_request(url: str) -> requests.Response:
     raise requests.HTTPError(f"Loading error. Server response code {code}.")
 
 
-def create_file_name(url: str) -> str:
+def create_name(url: str, end_prefix: str = "") -> str:
     """
-    Create file name from url
+    Create file name or folder name from url
 
     :param url: page url
+    :param end_prefix: (optional) end prefix or extension
     :return: str
     """
     result = urlparse(url)
-    part_url, _ = os.path.splitext(result.netloc + result.path)
-    return re.sub(pattern=r"\W", repl="-", string=part_url) + ".html"
+    part_url, ext = os.path.splitext(result.netloc + result.path)
+
+    ext = end_prefix if end_prefix else ext
+    return re.sub(pattern=r"\W|_", repl="-", string=part_url) + ext
 
 
 def save_data(data, file_path: str):
