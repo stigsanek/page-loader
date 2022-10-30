@@ -3,6 +3,7 @@ import re
 from urllib.parse import urlparse
 
 import requests
+import urllib3
 
 
 def load_data(url: str) -> str:
@@ -12,13 +13,27 @@ def load_data(url: str) -> str:
     :param url: page url
     :return: str
     """
-    response = requests.get(url)
+    urllib3.disable_warnings()
+
+    response = requests.get(url, verify=False)
     code = response.status_code
 
     if code == requests.codes.ok:
         return response.text
 
     raise requests.HTTPError(f"Loading error. Server response code {code}.")
+
+
+def create_file_name(url: str) -> str:
+    """
+    Create file name from url
+
+    :param url: page url
+    :return: str
+    """
+    result = urlparse(url)
+    part_url, _ = os.path.splitext(result.netloc + result.path)
+    return re.sub(pattern=r"\W", repl="-", string=part_url) + ".html"
 
 
 def save_data(data: str, file_path: str):
@@ -36,15 +51,3 @@ def save_data(data: str, file_path: str):
 
     with open(file=file_path, mode="w", encoding="utf-8") as f:
         f.write(data)
-
-
-def create_file_name(url: str) -> str:
-    """
-    Create file name from url
-
-    :param url: page url
-    :return: str
-    """
-    result = urlparse(url)
-    part_url, _ = os.path.splitext(result.netloc + result.path)
-    return re.sub(pattern=r"\W", repl="-", string=part_url) + ".html"
