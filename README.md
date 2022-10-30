@@ -1,6 +1,9 @@
 # PageLoader
 
+[![Github Actions Status](https://github.com/stigsanek/python-project-51/workflows/python-ci/badge.svg)](https://github.com/stigsanek/python-project-51/actions)
 [![Actions Status](https://github.com/stigsanek/python-project-51/workflows/hexlet-check/badge.svg)](https://github.com/stigsanek/python-project-51/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ff6b591f32b06bddfb55/maintainability)](https://codeclimate.com/github/stigsanek/python-project-51/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ff6b591f32b06bddfb55/test_coverage)](https://codeclimate.com/github/stigsanek/python-project-51/test_coverage)
 
 "PageLoader" is a command line utility that downloads pages from the internet and stores them on your computer. Along with
 the page it downloads all the resources (images, styles and js) allowing you to open the page without the Internet.
