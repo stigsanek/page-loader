@@ -3,7 +3,6 @@ from pathlib import Path
 import pytest
 
 from page_loader.main import download
-from page_loader.storage import generate_file_name
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
