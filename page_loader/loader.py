@@ -7,7 +7,7 @@ def load_data(url: str) -> bytearray:
     Load data from url
 
     :param url: page url
-    :return: requests.Response
+    :return: bytearray
     """
     urllib3.disable_warnings()
 
