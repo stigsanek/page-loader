@@ -12,9 +12,9 @@ def download(page_url: str, out_dir: str = os.getcwd()) -> str:
     :param out_dir: output folder
     :return: str
     """
-    response = load_data(page_url)
+    content = load_data(page_url)
     file_name = generate_file_name(page_url)
     file_path = os.path.join(out_dir, file_name)
-    save_content(content=response.text, file_path=file_path)
+    save_content(content=content, file_path=file_path)
 
     return file_path

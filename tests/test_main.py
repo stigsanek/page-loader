@@ -1,6 +1,6 @@
 import pytest
 
-from page_loader.loader import load_data
+from page_loader.main import download
 from tests import FIXTURES, read_file
 
 
@@ -8,16 +8,22 @@ from tests import FIXTURES, read_file
     argnames="url",
     argvalues=["https://ru.hexlet.io/courses"]
 )
-def test_load_data(url, requests_mock):
+def test_download(url, tmp_path, requests_mock):
     """
-    Test for load_data function
+    Test for download function
 
     :param url: page url
+    :param tmp_path: temp dir
     :param requests_mock: requests_mock object
     :return:
     """
     expected = read_file(FIXTURES / "ru-hexlet-io-courses.html")
     requests_mock.get(url, text=expected)
-    got = load_data(url).decode("utf-8")
+
+    test_dir = tmp_path / "test"
+    test_dir.mkdir()
+
+    result_file = download(page_url=url, out_dir=str(test_dir))
+    got = read_file(result_file)
 
     assert got == expected

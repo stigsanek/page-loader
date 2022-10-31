@@ -2,7 +2,7 @@ import requests
 import urllib3
 
 
-def load_data(url: str) -> requests.Response:
+def load_data(url: str) -> bytearray:
     """
     Load data from url
 
@@ -15,6 +15,6 @@ def load_data(url: str) -> requests.Response:
     code = response.status_code
 
     if code == requests.codes.ok:
-        return response
+        return bytearray(response.content)
 
     raise requests.HTTPError(f"Loading error. Server response code {code}.")

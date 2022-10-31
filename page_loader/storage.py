@@ -21,7 +21,7 @@ def generate_file_name(url: str) -> str:
     return re.sub(pattern=r"\W|_", repl="-", string=part_url) + ext
 
 
-def save_content(content, file_path: str):
+def save_content(content, file_path):
     """
     Save content to file
 
@@ -29,7 +29,7 @@ def save_content(content, file_path: str):
     :param file_path: file path
     :return:
     """
-    folder, _ = os.path.split(file_path)
+    folder, _ = os.path.split(str(file_path))
 
     if not os.path.exists(folder):
         os.makedirs(folder)
