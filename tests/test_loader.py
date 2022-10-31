@@ -1,4 +1,5 @@
 from pathlib import Path
+from urllib.parse import urlparse
 
 import pytest
 
@@ -65,5 +66,7 @@ def test_create_name(url, end_prefix, name):
     :param name: expected name
     :return:
     """
-    got = create_name(url=url, end_prefix=end_prefix)
+    parse_res = urlparse(url)
+    got = create_name(parse_res=parse_res, end_prefix=end_prefix)
+
     assert got == name

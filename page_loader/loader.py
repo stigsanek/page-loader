@@ -1,6 +1,6 @@
 import os
 import re
-from urllib.parse import urlparse
+from urllib.parse import ParseResult
 
 import requests
 import urllib3
@@ -24,19 +24,18 @@ def send_request(url: str) -> requests.Response:
     raise requests.HTTPError(f"Loading error. Server response code {code}.")
 
 
-def create_name(url: str, end_prefix: str = "") -> str:
+def create_name(parse_res: ParseResult, end_prefix: str = "") -> str:
     """
     Create file name or folder name from url
 
-    :param url: page url
+    :param parse_res: ParseResult
     :param end_prefix: (optional) end prefix or extension
     :return: str
     """
-    result = urlparse(url)
-    part_url, ext = os.path.splitext(result.netloc + result.path)
+    part_url, ext = os.path.splitext(parse_res.netloc + parse_res.path)
 
-    ext = end_prefix if end_prefix else ext
-    return re.sub(pattern=r"\W|_", repl="-", string=part_url) + ext
+    end = end_prefix if end_prefix else ext
+    return re.sub(pattern=r"\W|_", repl="-", string=part_url) + end
 
 
 def save_data(data, file_path: str):
