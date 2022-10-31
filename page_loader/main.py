@@ -1,7 +1,7 @@
 import os
-from urllib.parse import urlparse
 
-from page_loader.loader import send_request, create_name, save_data
+from page_loader.loader import load_data
+from page_loader.storage import generate_file_name, save_content
 
 
 def download(page_url: str, out_dir: str = os.getcwd()) -> str:
@@ -12,11 +12,9 @@ def download(page_url: str, out_dir: str = os.getcwd()) -> str:
     :param out_dir: output folder
     :return: str
     """
-    response = send_request(page_url)
-    parse_result = urlparse(page_url)
-
-    file_name = create_name(parse_res=parse_result, end_prefix=".html")
+    response = load_data(page_url)
+    file_name = generate_file_name(page_url)
     file_path = os.path.join(out_dir, file_name)
-    save_data(data=response.text, file_path=file_path)
+    save_content(content=response.text, file_path=file_path)
 
     return file_path
