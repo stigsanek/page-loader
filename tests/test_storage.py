@@ -9,6 +9,8 @@ from tests import FIXTURES, read_file
     argvalues=[
         ("https://ru.hexlet.io/courses",
          "ru-hexlet-io-courses.html"),
+        (" https://ru.hexlet.io/courses  ",
+         "ru-hexlet-io-courses.html"),
         ("https://ru.hexlet.io/courses_list.html",
          "ru-hexlet-io-courses-list.html"),
         ("https://ru.hexlet.io/assets/professions/nodejs.png",

@@ -12,7 +12,7 @@ def generate_file_name(url: str) -> str:
     :param url: page url
     :return: str
     """
-    parsed_url = urlparse(url)
+    parsed_url = urlparse(url.strip())
     part_url, ext = os.path.splitext(parsed_url.hostname + parsed_url.path)
 
     if ext not in EXTENSION:
