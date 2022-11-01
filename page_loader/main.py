@@ -21,6 +21,7 @@ def download(url: str, out_dir: str = os.getcwd()) -> str:
 
     file_name = generate_file_name(url)
     file_path = os.path.join(out_dir, file_name)
+
     response = load_data(url)
     save_content(content=response.text, file_path=file_path)
     log.info(f"write html file: {file_path}")
@@ -30,6 +31,7 @@ def download(url: str, out_dir: str = os.getcwd()) -> str:
 
     html_doc = HtmlDoc(content=content, url=url)
     res_dir = os.path.splitext(file_name)[0] + "_files"
+
     download_resourses(out_dir=out_dir, res_dir=res_dir, html_doc=html_doc)
     save_content(content=html_doc.content, file_path=file_path)
     log.debug("page is fully loaded")
