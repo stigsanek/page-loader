@@ -11,7 +11,7 @@ def get_args() -> argparse.Namespace:
         description="A command line utility that downloads pages from "
                     "the Internet and stores them on your computer"
     )
-    parser.add_argument("page_url", type=str)
+    parser.add_argument("url", type=str)
     parser.add_argument(
         "-o",
         "--output",

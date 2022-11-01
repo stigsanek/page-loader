@@ -1,4 +1,7 @@
+from pathlib import Path
+
 import pytest
+from requests_mock import Mocker
 
 from page_loader.main import download
 from tests import FIXTURES, read_file
@@ -8,13 +11,13 @@ from tests import FIXTURES, read_file
     argnames="url",
     argvalues=["https://ru.hexlet.io/courses"]
 )
-def test_download(url, tmp_path, requests_mock):
+def test_download(url: str, tmp_path: Path, requests_mock: Mocker):
     """
     Test for download function
 
     :param url: page url
     :param tmp_path: temp dir
-    :param requests_mock: requests_mock object
+    :param requests_mock: requests_mock.Mocker
     :return:
     """
     expected = read_file(FIXTURES / "ru-hexlet-io-courses.html")
@@ -23,7 +26,7 @@ def test_download(url, tmp_path, requests_mock):
     test_dir = tmp_path / "test"
     test_dir.mkdir()
 
-    result_file = download(page_url=url, out_dir=str(test_dir))
+    result_file = download(url=url, out_dir=str(test_dir))
     got = read_file(result_file)
 
     assert got == expected

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 
 from page_loader.storage import generate_file_name, save_content
@@ -17,7 +19,7 @@ from tests import FIXTURES, read_file
          "ru-hexlet-io-assets-professions-nodejs.png")
     ]
 )
-def test_generate_file_name(url, file_name):
+def test_generate_file_name(url: str, file_name: str):
     """
     Test for generate_file_name function
 
@@ -28,7 +30,7 @@ def test_generate_file_name(url, file_name):
     assert generate_file_name(url) == file_name
 
 
-def test_save_content(tmp_path):
+def test_save_content(tmp_path: Path):
     """
     Test for save_content function
 

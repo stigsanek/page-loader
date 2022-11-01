@@ -42,13 +42,14 @@ class HtmlDoc:
         """
         return [i[0] for i in self._resourses]
 
-    def _parse_resourses_urls(self, base_url: str) -> list:
+    def _parse_resourses_urls(self, url: str) -> list:
         """
         Parse resourses urls
 
-        :return:
+        :param url: page url
+        :return: list
         """
-        src_url = urlparse(base_url.strip())
+        src_url = urlparse(url.strip())
         resourses = []
 
         for t in self._soup.findAll(ATRR_MAP.keys()):
@@ -62,8 +63,8 @@ class HtmlDoc:
             is_host = parsed_url.hostname == src_url.hostname
 
             if is_host or not parsed_url.hostname:
-                base_url = f"{src_url.scheme}://{src_url.hostname}"
-                new_link = urljoin(base_url, parsed_url.path)
+                url = f"{src_url.scheme}://{src_url.hostname}"
+                new_link = urljoin(url, parsed_url.path)
                 resourses.append((new_link, attr, t))
 
         return resourses

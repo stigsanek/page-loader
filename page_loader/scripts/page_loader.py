@@ -10,7 +10,7 @@ def main():
     :return:
     """
     args = get_args()
-    result = download(page_url=args.page_url, out_dir=args.output)
+    result = download(url=args.url, out_dir=args.output)
     print(result)
 
 

@@ -4,7 +4,7 @@ from tests import FIXTURES, read_file
 
 def test_html_doc():
     """
-    Test for html_doc class
+    Test for HtmlDoc class
 
     :return:
     """
