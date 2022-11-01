@@ -13,7 +13,7 @@ def download(url: str, out_dir: str = os.getcwd()) -> str:
     Download page
 
     :param url: page url
-    :param out_dir: output folder
+    :param out_dir: (optional) output folder
     :return: str
     """
     log.info(f"requested url: {url}")
