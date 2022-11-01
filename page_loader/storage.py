@@ -25,7 +25,7 @@ def save_content(content, file_path):
     """
     Save content to file
 
-    :param content: data
+    :param content: content
     :param file_path: file path
     :return:
     """
@@ -34,8 +34,8 @@ def save_content(content, file_path):
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-    if isinstance(content, bytearray):
-        mode = "w+b"
+    if isinstance(content, bytes):
+        mode = "wb"
         encoding = None
     else:
         mode = "w"

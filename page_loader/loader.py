@@ -2,12 +2,12 @@ import requests
 import urllib3
 
 
-def load_data(url: str) -> bytearray:
+def load_data(url: str) -> requests.Response:
     """
     Load data from url
 
     :param url: page url
-    :return: bytearray
+    :return: requests.Response
     """
     urllib3.disable_warnings()
 
@@ -15,6 +15,6 @@ def load_data(url: str) -> bytearray:
     code = response.status_code
 
     if code == requests.codes.ok:
-        return bytearray(response.content)
+        return response
 
     raise requests.HTTPError(f"Loading error. Server response code {code}.")
