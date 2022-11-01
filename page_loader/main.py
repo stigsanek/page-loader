@@ -1,5 +1,7 @@
 import os
 
+from progress.bar import ChargingBar
+
 from page_loader.html_doc import HtmlDoc
 from page_loader.loader import load_data
 from page_loader.logger import log
@@ -41,13 +43,21 @@ def download_resourses(out_dir: str, res_dir, html_doc: HtmlDoc):
     :param html_doc: HtmlDoc
     :return:
     """
-    for res_url in html_doc.resourses_urls:
-        response = load_data(res_url)
-        name = generate_file_name(res_url)
-        path = os.path.join(out_dir, res_dir, name)
+    resourses_urls = html_doc.resourses_urls
 
-        save_content(content=response.content, file_path=path)
-        html_doc.replace_resourse_url(
-            old_url=res_url,
-            new_url=f"{res_dir}/{name}"
-        )
+    if resourses_urls:
+        bar = ChargingBar('Downloading:', max=len(resourses_urls))
+
+        for res_url in resourses_urls:
+            response = load_data(res_url)
+            name = generate_file_name(res_url)
+            path = os.path.join(out_dir, res_dir, name)
+
+            save_content(content=response.content, file_path=path)
+            html_doc.replace_resourse_url(
+                old_url=res_url,
+                new_url=f"{res_dir}/{name}"
+            )
+            bar.next()
+
+        bar.finish()
