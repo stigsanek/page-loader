@@ -2,6 +2,7 @@ import os
 
 from page_loader.html_doc import HtmlDoc
 from page_loader.loader import load_data
+from page_loader.logger import log
 from page_loader.storage import generate_file_name, save_content
 
 
@@ -13,10 +14,16 @@ def download(url: str, out_dir: str = os.getcwd()) -> str:
     :param out_dir: output folder
     :return: str
     """
+    log.info(f"requested url: {url}")
+    log.info(f"output path: {out_dir}")
+
     response = load_data(url)
     file_name = generate_file_name(url)
     file_path = os.path.join(out_dir, file_name)
     res_dir = os.path.splitext(file_name)[0] + "_files"
+
+    log.debug(f"page name: {file_name}")
+    log.debug(f"resourses dir: {file_name}")
 
     html_doc = HtmlDoc(content=response.text, url=url)
     download_resourses(out_dir=out_dir, res_dir=res_dir, html_doc=html_doc)
