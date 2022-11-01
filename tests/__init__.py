@@ -20,8 +20,8 @@ BEFORE_FILES = {
 
 AFTER_FILES = {
     "page": Path("ru-hexlet-io-courses.html"),
-    "img": Path("ru-hexlet-io-courses_files/ru-hexlet-io-assets-professions-nodejs.png"),
-    "css": Path("ru-hexlet-io-courses_files/ru-hexlet-io-assets-application.css"),
+    "img": Path("ru-hexlet-io-courses_files/ru-hexlet-io-assets-professions-nodejs.png"),  # noqa E501
+    "css": Path("ru-hexlet-io-courses_files/ru-hexlet-io-assets-application.css"),  # noqa E501
     "js": Path("ru-hexlet-io-courses_files/ru-hexlet-io-script.js"),
     "html": Path("ru-hexlet-io-courses_files/ru-hexlet-io-courses.html")
 }

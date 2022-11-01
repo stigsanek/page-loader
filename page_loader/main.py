@@ -20,8 +20,8 @@ def download(url: str, out_dir: str = os.getcwd()) -> str:
 
     html_doc = HtmlDoc(content=response.text, url=url)
     download_resourses(out_dir=out_dir, res_dir=res_dir, html_doc=html_doc)
-
     save_content(content=html_doc.content, file_path=file_path)
+
     return file_path
 
 
