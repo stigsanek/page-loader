@@ -5,6 +5,7 @@ import os
 def get_args() -> argparse.Namespace:
     """
     Return arguments
+
     :return: argparse.Namespace
     """
     parser = argparse.ArgumentParser(
