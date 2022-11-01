@@ -3,7 +3,7 @@ import re
 from urllib.parse import urlparse
 
 from page_loader.errors import PageLoaderException
-from page_loader.loader import log
+from page_loader.logger import log
 
 EXTENSION = (".html", ".png", ".jpg", ".jpeg", ".svg", ".css", ".js")
 
@@ -49,5 +49,5 @@ def save_content(content, file_path):
             f.write(content)
 
     except OSError as err:
-        log.err(err)
+        log.error(err)
         raise PageLoaderException(err)
