@@ -1,6 +1,9 @@
 import requests
 import urllib3
 
+from page_loader.errors import PageLoaderException
+from page_loader.logger import log
+
 
 def load_data(url: str) -> requests.Response:
     """
@@ -11,10 +14,13 @@ def load_data(url: str) -> requests.Response:
     """
     urllib3.disable_warnings()
 
-    response = requests.get(url, verify=False)
-    code = response.status_code
+    try:
+        response = requests.get(url, verify=False)
+        response.raise_for_status()
 
-    if code == requests.codes.ok:
+        log.debug(f"Request to {url} completed successfully")
         return response
 
-    raise requests.HTTPError(f"Loading error. Server response code {code}.")
+    except requests.RequestException as err:
+        log.error(err)
+        raise PageLoaderException(err)

@@ -2,6 +2,9 @@ import os
 import re
 from urllib.parse import urlparse
 
+from page_loader.errors import PageLoaderException
+from page_loader.loader import log
+
 EXTENSION = (".html", ".png", ".jpg", ".jpeg", ".svg", ".css", ".js")
 
 
@@ -31,15 +34,20 @@ def save_content(content, file_path):
     """
     folder, _ = os.path.split(str(file_path))
 
-    if not os.path.exists(folder):
-        os.makedirs(folder)
+    try:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
 
-    if isinstance(content, bytes):
-        mode = "wb"
-        encoding = None
-    else:
-        mode = "w"
-        encoding = "utf-8"
+        if isinstance(content, bytes):
+            mode = "wb"
+            encoding = None
+        else:
+            mode = "w"
+            encoding = "utf-8"
 
-    with open(file=file_path, mode=mode, encoding=encoding) as f:
-        f.write(content)
+        with open(file=file_path, mode=mode, encoding=encoding) as f:
+            f.write(content)
+
+    except OSError as err:
+        log.err(err)
+        raise PageLoaderException(err)

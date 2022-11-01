@@ -27,15 +27,15 @@ def test_download(tmp_path: Path, fake_loads):
     :param fake_loads: fake_loads fixture
     :return:
     """
-    test_dir = tmp_path / "test"
-    test_dir.mkdir()
+    temp_dir = tmp_path / "test"
+    temp_dir.mkdir()
 
-    result_file = download(url=URLS["page"], out_dir=str(test_dir))
+    result_file = download(url=URLS["page"], out_dir=str(temp_dir))
     exp_content = read_file(FIXTURES / AFTER_FILES["page"])
     got_content = read_file(result_file)
 
     assert got_content == exp_content
 
     for k, v in AFTER_FILES.items():
-        exp_path = test_dir / v
+        exp_path = temp_dir / v
         assert exp_path.exists()

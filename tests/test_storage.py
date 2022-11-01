@@ -27,14 +27,13 @@ def test_save_content(tmp_path: Path):
     :param tmp_path: temp dir
     :return:
     """
+    temp_dir = tmp_path / "test"
+    temp_dir.mkdir()
+
     exp_text = read_file(BEFORE_FILES["page"])
     exp_byte = read_file(BEFORE_FILES["img"], mode="rb")
-
-    test_dir = tmp_path / "test"
-    test_dir.mkdir()
-
-    page_file = test_dir / AFTER_FILES["page"]
-    img_file = test_dir / AFTER_FILES["img"]
+    page_file = temp_dir / AFTER_FILES["page"]
+    img_file = temp_dir / AFTER_FILES["img"]
 
     save_content(content=exp_text, file_path=page_file)
     save_content(content=exp_byte, file_path=img_file)
