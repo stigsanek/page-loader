@@ -15,7 +15,7 @@ def main():
 
     try:
         result = download(url=args.url, out_dir=args.output)
-        print(f"Page was downloaded as {result}")
+        print(f"Page was downloaded as '{result}'")
     except Exception:
         sys.exit(1)
 

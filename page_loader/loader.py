@@ -17,8 +17,6 @@ def load_data(url: str) -> requests.Response:
     try:
         response = requests.get(url, verify=False)
         response.raise_for_status()
-
-        log.debug(f"Request to {url} completed successfully")
         return response
 
     except requests.RequestException as err:

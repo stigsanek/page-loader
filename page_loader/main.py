@@ -31,6 +31,8 @@ def download(url: str, out_dir: str = os.getcwd()) -> str:
     download_resourses(out_dir=out_dir, res_dir=res_dir, html_doc=html_doc)
     save_content(content=html_doc.content, file_path=file_path)
 
+    log.debug("page is fully loaded")
+
     return file_path
 
 
@@ -61,3 +63,4 @@ def download_resourses(out_dir: str, res_dir, html_doc: HtmlDoc):
             bar.next()
 
         bar.finish()
+        log.debug("resources are loaded")
