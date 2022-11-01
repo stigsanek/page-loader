@@ -32,12 +32,7 @@ def save_content(content, file_path):
     :param file_path: file path
     :return:
     """
-    folder, _ = os.path.split(str(file_path))
-
     try:
-        if not os.path.exists(folder):
-            os.makedirs(folder)
-
         if isinstance(content, bytes):
             mode = "wb"
             encoding = None
