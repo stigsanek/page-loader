@@ -16,7 +16,7 @@ class HtmlDoc:
 
     def __init__(self, content: str, url: str):
         """
-        Constructor
+        Initialization
 
         :param content: html content
         :param url: page url
