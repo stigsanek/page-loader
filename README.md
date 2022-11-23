@@ -1,13 +1,12 @@
-# PageLoader
+# Page Loader
 
-[![Github Actions Status](https://github.com/stigsanek/python-project-51/workflows/python-ci/badge.svg)](https://github.com/stigsanek/python-project-51/actions)
-[![Actions Status](https://github.com/stigsanek/python-project-51/workflows/hexlet-check/badge.svg)](https://github.com/stigsanek/python-project-51/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/ff6b591f32b06bddfb55/maintainability)](https://codeclimate.com/github/stigsanek/python-project-51/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/ff6b591f32b06bddfb55/test_coverage)](https://codeclimate.com/github/stigsanek/python-project-51/test_coverage)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stigsanek/page-loader/python-ci)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/stigsanek/page-loader)
+![Code Climate coverage](https://img.shields.io/codeclimate/coverage/stigsanek/page-loader)
 
 ## Description
 
-"PageLoader" is a command line utility that downloads pages from the internet and stores them on your computer. Along
+"Page Loader" is a command line utility that downloads pages from the internet and stores them on your computer. Along
 with
 the page it downloads all the resources (images, styles and js) allowing you to open the page without the Internet.
 
@@ -38,15 +37,15 @@ Clone the project on the command line:
 
 ```bash
 # clone via HTTPS:
->> git clone https://github.com/stigsanek/python-project-51.git
+>> git clone https://github.com/stigsanek/page-loader.git
 # clone via SSH:
->> git@github.com:stigsanek/python-project-51.git
+>> git@github.com:stigsanek/page-loader.git
 ```
 
 It remains to move to the directory and install the package:
 
 ```bash
->> cd python-project-51
+>> cd page-loader
 >> poetry build
 >> python -m pip install --user dist/*.whl
 ```
