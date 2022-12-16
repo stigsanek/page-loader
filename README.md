@@ -1,6 +1,6 @@
 # Page Loader
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stigsanek/page-loader/python-ci)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/stigsanek/page-loader/pyci.yml?branch=main)
 ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/stigsanek/page-loader)
 ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/stigsanek/page-loader)
 
